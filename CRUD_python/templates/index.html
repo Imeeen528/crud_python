@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <title>CRUD python and flask </title>
+</head>
+<body>
+    <h1>Home page</h1>
+    <header class="head">
+        <div class="content_header">
+            <h2><a href="/" class="logo">logo</a></h2>
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/">About</a></li>
+            </ul>
+            <div class="search-bar">
+                <input spellcheck="false" type="text" placeholder="search a product.." name="search" id="search" class="search"/>
+                <button class="search-btn" id="search-btn">Search</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="content section-1">
+            <h2>Add your product</h2>
+            <hr />
+            <form method="POST" action="/" class="form" name="form">
+                <div class="input-div">
+                    <label for="title">Enter your product</label>
+                    <input type="text" name="title" class="input-text" id="title" placeholder="Enter your product">
+                </div>
+                <div class="input-div">
+                    <label for="description">Enter your description</label>
+                    <input type="text" name="description" class="input-text" id="description" placeholder="Enter your description">
+                </div>
+                <button class="add-btn" type="submit">Add</button>
+            </form>
+        </div>
+
+        <div class="content section-2">
+            <h2>your products</h2>
+            <hr />
+            <div class="table-div">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th class="decription-row">Description</th>
+                            <th>Created at</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     
+                        {% for todo in todos%}
+                        <tr>
+                            <td>{{todo.title}}</td>
+                            <td>{{todo.desc}}</td>
+                            <td>{{todo.created_at}}</td>
+                            <td class="button-row">
+                                <a href="/update" class="actions-btns edit">Edit</a>
+                                <a href="/delete/{{todo._id}}" class="actions-btns delete">Delete</a>
+                            </td>
+                        </tr>  
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
